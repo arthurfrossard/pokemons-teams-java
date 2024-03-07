@@ -6,6 +6,6 @@ import java.util.List;
 
 @Data
 public class Team {
-    private String nomeDeUsuario;
+    private String userName;
     private List<Pokemon> pokemons;
 }

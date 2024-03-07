@@ -14,5 +14,6 @@ public class Pokemon {
     private int base_experience;
     private String name;
     private List<Move> moves;
+    private int height;
     private int weight;
 }
