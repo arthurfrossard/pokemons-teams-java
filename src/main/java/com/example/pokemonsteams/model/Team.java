@@ -1,9 +1,5 @@
 package com.example.pokemonsteams.model;
 
-import com.example.pokemonsteams.service.IdGeneratorService;
-
-import org.springframework.beans.factory.annotation.Autowired;
-
 import lombok.Data;
 
 import java.util.List;
