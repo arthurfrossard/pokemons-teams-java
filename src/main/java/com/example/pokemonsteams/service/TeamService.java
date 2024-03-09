@@ -13,10 +13,12 @@ import java.util.Optional;
 public class TeamService {
     private List<Team> teams;
     private PokemonService pokemonService;
+    private IdGeneratorService idGeneratorService;
 
-    public TeamService(PokemonService pokemonService) {
+    public TeamService(PokemonService pokemonService, IdGeneratorService idGeneratorService) {
         this.teams = new ArrayList<>();
         this.pokemonService = pokemonService;
+        this.idGeneratorService = idGeneratorService;
     }
 
     public List<Team> getAll() {
@@ -46,8 +48,9 @@ public class TeamService {
         return result.get();
     }
 
-
     public Team create(Team team) {
+        long teamId = idGeneratorService.generateId();
+        team.setId(teamId);
         List<Pokemon> teamPokemons = new ArrayList<>();
         for (Pokemon pokemon : team.getPokemons()) {
             Pokemon retrievedPokemon = pokemonService.getByName(pokemon.getName());
@@ -57,6 +60,4 @@ public class TeamService {
         teams.add(team);
         return team;
     }
-
-
 }

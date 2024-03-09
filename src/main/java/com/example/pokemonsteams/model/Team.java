@@ -14,12 +14,9 @@ public class Team {
     private String userName;
     private List<Pokemon> pokemons;
 
-    @Autowired
-    private IdGeneratorService idGeneratorService;
-
     public Team() {
-        this.id = idGeneratorService.generateId();
     }
+
 }
 
 

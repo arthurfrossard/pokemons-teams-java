@@ -5,6 +5,7 @@ import com.example.pokemonsteams.model.Pokemon;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.json.JsonMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.net.URI;
@@ -12,6 +13,7 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 
+@Service
 public class PokemonService {
 
     public Pokemon getByName(String pokemonName) {
@@ -37,6 +39,4 @@ public class PokemonService {
             throw new RuntimeException(e);
         }
     }
-
-
 }
