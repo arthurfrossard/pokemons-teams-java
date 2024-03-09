@@ -11,4 +11,3 @@ public class IdGeneratorService {
         return sequence.getAndIncrement();
     }
 }
-

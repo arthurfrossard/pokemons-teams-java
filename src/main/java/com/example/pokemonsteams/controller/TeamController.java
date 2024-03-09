@@ -65,33 +65,22 @@ public class TeamController {
         }
     }
 
-
-    @GetMapping("/{identifier}")
-    public ResponseEntity<?> getByIdentifier(@PathVariable String identifier) {
-        logger.info("TeamController's getByIdentifier method fired for Identifier: " + identifier);
+    @GetMapping("/{user}")
+    public ResponseEntity<?> getByUser(@PathVariable String user) {
+        logger.info("TeamController's getByUser method fired for user: " + user);
         try {
-            long id = Long.parseLong(identifier);
-            Team team = teamService.getById(id);
-            logger.info("TeamController OK's getByIdentifier method for ID: " + id);
+            Team team = teamService.getByName(user);
+            logger.info("TeamController OK's getByUser method for UserName: " + user);
             return new ResponseEntity<>(teamToResponse(team), HttpStatus.OK);
-        } catch (NumberFormatException e) {
-            try {
-                Team team = teamService.getByName(identifier);
-                logger.info("TeamController OK's getByIdentifier method for UserName: " + identifier);
-                return new ResponseEntity<>(teamToResponse(team), HttpStatus.OK);
-            } catch (TeamNotFoundException ex) {
-                logger.error("Error getByIdentifier method: " + new Erro(ex.getMessage()));
-                return new ResponseEntity<>(new Erro(ex.getMessage()), HttpStatus.NOT_FOUND);
-            }
         } catch (TeamNotFoundException ex) {
-            logger.error("Error getByIdentifier method: " + new Erro(ex.getMessage()));
+            logger.error("Error getByUser method: " + new Erro(ex.getMessage()));
             return new ResponseEntity<>(new Erro(ex.getMessage()), HttpStatus.NOT_FOUND);
         }
     }
 
     private Map<String, Object> teamToResponse(Team team) {
         Map<String, Object> response = new HashMap<>();
-        response.put("userName", team.getUserName());
+        response.put("owner", team.getUserName());
         List<Map<String, Object>> pokemonList = new ArrayList<>();
         for (Pokemon pokemon : team.getPokemons()) {
             Map<String, Object> pokemonInfo = new HashMap<>();
@@ -104,8 +93,6 @@ public class TeamController {
         response.put("pokemons", pokemonList);
         return response;
     }
-
-
 
     @PostMapping
     public ResponseEntity<?> create(@RequestBody Map<String, Object> requestBody) {
@@ -133,7 +120,4 @@ public class TeamController {
             return new ResponseEntity<>("Error creating team: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-
-
-
 }

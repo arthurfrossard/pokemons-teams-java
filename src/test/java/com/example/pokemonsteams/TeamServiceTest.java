@@ -46,7 +46,6 @@ public class TeamServiceTest {
         });
     }
 
-
     @Test
     public void testGetTeamByName() {
         Pokemon mockPokemon = new Pokemon();
@@ -75,7 +74,6 @@ public class TeamServiceTest {
         assertEquals("pikachu", retrievedTeam.getPokemons().get(0).getName());
         assertEquals(25, retrievedTeam.getPokemons().get(0).getId());
     }
-
 
     @Test
     public void testGetTeamByName_NotFound() {
@@ -114,4 +112,3 @@ public class TeamServiceTest {
         assertEquals(4, createdTeam.getPokemons().get(0).getHeight());
     }
 }
-
