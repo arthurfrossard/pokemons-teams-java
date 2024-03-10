@@ -65,6 +65,7 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
+					<executable>true</executable>
 					<excludes>
 						<exclude>
 							<groupId>org.projectlombok</groupId>
@@ -75,5 +76,6 @@
 			</plugin>
 		</plugins>
 	</build>
+
 
 </project>
